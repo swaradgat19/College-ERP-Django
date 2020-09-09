@@ -39,11 +39,39 @@ class StudentUpdate(UpdateView):
     fields = '__all__'
     success_url = '/students'
 
-class UpdateAttendance(UpdateView):
+'''class UpdateAttendance(UpdateView):
     model = models.Attendance
     template_name = 'main/update_attendance.html'
     fields = '__all__'
-    success_url = '/students'
+    success_url = '/students' '''
 
+class TeacherCreate(CreateView):
+    model = models.Teacher
+    template_name = 'main/create_teacher.html'
+    fields = '__all__'
+    success_url = '/teachers'
 
+class TeacherList(ListView):
+    model = models.Teacher
+    template_name = 'main/teacher_list.html'
+    context_object_name = 'teachers'
+
+class TeacherUpdate(UpdateView):
+    model = models.Teacher
+    template_name = 'main/create_teacher.html'
+    success_url = '/teachers'
+
+def TeacherInfo(request , pk):
+    teacher = get_object_or_404(models.Teacher , pk = pk)
+    context = {
+        'teacher' : teacher
+    }
+
+    return render(request , 'main/teacher.html' , context)
+
+def index(request):
+
+    context = {}
+
+    return render(request, 'main/index.html' , context)
     
