@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+{% include 'main/navbar.html' %}
+<h1>Welcome, Teacher!</h1>
+<h4>List of the students:</h4>
+<li>
+    <ul>
+        {% for student in students %}
+            <li><a href="{% url 'get_student' student.id %}">{{student}}</a></li>
+        {% endfor %}
+    </ul>
+</li>
+{% for t in teacher %}
+    {{t.t_name}}
+{% endfor %}
+
+{% endblock %}
