@@ -1,8 +1,9 @@
 <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Logo</a>
+      <a href="{% url 'home' %}">HOME</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="">Update Student</a></li>  
+        <li><a href="{% url 'create_student' %}">Create Student</a></li>
+        <li><a href="{% url 'student_list'  %}">Update Student</a></li>  
       </ul>
     </div>
   </nav>

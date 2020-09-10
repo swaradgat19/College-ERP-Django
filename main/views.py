@@ -74,4 +74,25 @@ def index(request):
     context = {}
 
     return render(request, 'main/index.html' , context)
-    
+
+'''class DivisionStudents(DetailView):
+    #queryset = models.Student.objects.filter(classroom = 1)
+    query_pk_and_slug
+    context_object_name = 'students'
+    template_name = 'main/division_students.html'
+
+'''
+
+class DivisionList(ListView):
+    model = models.Class
+    template_name = 'main/index.html'
+    context_object_name = 'divisions'
+
+def DivisionStudents(request , pk):
+    queryset = models.Student.objects.filter(classroom=pk)
+
+    context = {
+        'students' : queryset
+    }
+
+    return render(request , 'main/division_students.html' , context)
