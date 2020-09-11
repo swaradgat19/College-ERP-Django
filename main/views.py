@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse , HttpResponseRedirect
 from main import models
 from main import forms
 from django.views.generic import (
@@ -38,12 +38,6 @@ class StudentUpdate(UpdateView):
     template_name = 'main/create_student.html'
     fields = '__all__'
     success_url = '/students'
-
-'''class UpdateAttendance(UpdateView):
-    model = models.Attendance
-    template_name = 'main/update_attendance.html'
-    fields = '__all__'
-    success_url = '/students' '''
 
 class TeacherCreate(CreateView):
     model = models.Teacher
@@ -108,3 +102,24 @@ class create_branch(CreateView):
     template_name = 'main/create_branch.html'
     fields = '__all__'
     success_url = '/'
+
+def UpdateAttendance(request , pk):
+
+    student = get_object_or_404(models.Student , pk =pk)
+    attendance = models.Attendance.objects.filter(student=student) # Gets the attendance of that student
+
+    attendance_form = forms.Attendance_Form()
+
+    if request.method == 'POST':
+        attendance_form = forms.Attendance_Form(request.POST)
+        if attendance_form.is_valid():
+            attendance_form.save()
+            return HttpResponseRedirect('/')
+
+    context = {
+        'form' : attendance_form,
+        'student' : student,
+        'attendance' : attendance
+    }
+
+    return render(request , 'main/update_attendance.html' , context)

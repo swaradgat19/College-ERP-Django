@@ -1,12 +1,22 @@
-{% extends 'base.html' %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Student : {{ student.s_name }}</h1>
+    <h5>Update Attendance of {{student.s_name}} </h5>
 
     <form action="" method="POST">
+        {% csrf_token %}
+
         {{ form }}
 
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>  
     </form>
 
-{% endblock %}
+</body>
+</html>
