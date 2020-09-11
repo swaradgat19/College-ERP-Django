@@ -10,8 +10,11 @@ urlpatterns = [
 
     path('teachers/' , views.TeacherList.as_view(),name = 'teacher_list'),
     path('teacher/<int:pk>' , views.TeacherInfo , name = 'get_teacher'),
-    path('create_teacher' , views.TeacherCreate.as_view()),
+    path('create_teacher' , views.TeacherCreate.as_view() , name = 'create_teacher'),
     path('update_teacher/<int:pk>' , views.TeacherUpdate.as_view()),   
+    
+    path('create_division' , views.create_div.as_view() , name = 'create_div'),
+    path('create_branch' , views.create_branch.as_view() , name = 'create_branch'),
 
     path('division_students/<int:pk>' , views.DivisionStudents , name = 'div_kids'),     
     

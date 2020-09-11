@@ -70,7 +70,7 @@ def TeacherInfo(request , pk):
     return render(request , 'main/teacher.html' , context)
 
 def index(request):
-
+    
     context = {}
 
     return render(request, 'main/index.html' , context)
@@ -96,3 +96,15 @@ def DivisionStudents(request , pk):
     }
 
     return render(request , 'main/division_students.html' , context)
+
+class create_div(CreateView):
+    model = models.Class
+    template_name = 'main/create_div.html'
+    fields = '__all__'
+    success_url = '/'
+
+class create_branch(CreateView):
+    model = models.Branch
+    template_name = 'main/create_branch.html'
+    fields = '__all__'
+    success_url = '/'
