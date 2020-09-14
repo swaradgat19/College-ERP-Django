@@ -2,12 +2,29 @@
 
 {% block content %}
     {% include 'main/navbar.html' %}
+    <style>
+        a {
+            font-size: xx-larges;
+            color: black;
+            text-decoration: underline;
+        }
+
+        h3 {
+            text-align: center;
+        }
+    </style>
+    <h1>
+        List of Teachers : 
+    </h1>
+    
+            <td>
+                {% for teacher in teachers %}
+                <h3><a href="{% url 'get_teacher' teacher.id %}">{{teacher}}</a></h3>
+            {% endfor %}
+
 
     <li>
         <ul>
-            {% for teacher in teachers %}
-                <li><a href="{% url 'get_teacher' teacher.id %}">{{teacher}}</a></li>
-            {% endfor %}
         </ul>
     </li>
 {% endblock %}

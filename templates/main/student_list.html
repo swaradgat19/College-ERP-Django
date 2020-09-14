@@ -1,14 +1,27 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<style>
+h3 {
+  text-align: center;
+}
+a {
+    text-decoration: underline;
+    color: black;
+}
+
+</style>
 {% include 'main/navbar.html' %}
 <h1>Welcome, Teacher!</h1>
 <h4>List of the students:</h4>
-<li>
-    <ul>
-        {% for student in students %}
-            <h3><li><a href="{% url 'get_student' student.id %}">{{student}}</a></li></h3>
-        {% endfor %}
-    </ul>
-</li>
-{% endblock %}
+<div>
+    <li>
+        <ul>
+            {% for student in students %}
+                <h3><li><a href="{% url 'get_student' student.id %}">{{student}}</a></li></h3>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endblock %}
+</div>
+

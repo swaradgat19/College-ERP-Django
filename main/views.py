@@ -166,3 +166,18 @@ class whos_attendance(ListView):
     context_object_name = 'student'
     template_name = 'main/whos_attendance.html' 
 
+
+def whose_attendance(request):
+
+    student = models.Student.objects.all()
+    attendance = models.Attendance.objects.all()
+
+    context = {
+        'student' : student ,
+        'attendance' : attendance
+    }
+
+    return render(request , 'main/whos_attendance.html' , context)
+
+
+

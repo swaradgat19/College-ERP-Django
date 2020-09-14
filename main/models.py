@@ -47,7 +47,7 @@ class Attendance(models.Model):
     )
     #percentage = models.PositiveIntegerField(validators = [MinValueValidator(0) ,  MaxValueValidator(100)])
     #count = models.PositiveIntegerField(validators = [MinValueValidator(0)])
-    attended_classes = models.IntegerField( default=0,validators = [MinValueValidator(0) ])
+    attended_classes = models.IntegerField( default= 0,validators = [MinValueValidator(0) ])
     total_classes = models.IntegerField(default=0, validators=[MinValueValidator(0)])   
 
     def __str__(self):

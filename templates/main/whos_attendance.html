@@ -1,12 +1,35 @@
 {% extends 'main/base.html' %}
+
 {% block content %}
 
 {% include 'main/navbar.html' %}
-    <h1>Update attendance of :</h1>
 
-    {% for s in student %}
-        <li><a href="{% url 'update_attendance' s.id %}">{{s.s_name}}</a></li>
-    {% endfor %}
+<style>
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+</style>
+    <h1>Update attendance of :</h1>
+    <h4 class="center">
+        <table>
+            <thead>
+              <tr>
+                  <th>Students:</th>
+              </tr>
+            </thead>
+    
+            <tbody class="center">
+                {% for s in student %}
+              <tr>
+                <td>
+                        <li><a href="{% url 'update_attendance' s.id %}">{{s.s_name}}</a></li>
+                </td>
+                    {% endfor %}              
+              </tr>
+            </tbody>
+          </table>
+
 </body>
 </html>
 
