@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse , HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView,LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from main import models
 #from main import forms
 from django.views.generic import (
@@ -64,7 +64,8 @@ def TeacherInfo(request , pk):
     }
 
     return render(request , 'main/teacher.html' , context)
-
+    
+@login_required(login_url='/auth/login')
 def index(request):
     
     context = {}
@@ -126,13 +127,6 @@ def UpdateAttendance(request , pk):
 
     #return render(request , 'main/update_attendance.html' , context)
 
-'''class Login(LoginView):
-    template_name = "main/login.html"
-    redirect_authenticated_user = True
-
-class Logout(LogoutView):
-    pass
-'''
 
 class UpdateAttendance(UpdateView):
     model = models.Attendance
