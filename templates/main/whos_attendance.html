@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+{% include 'main/navbar.html' %}
+    <h1>Update attendance of :</h1>
+
+    {% for s in student %}
+        <li><a href="{% url 'update_attendance' s.id %}">{{s.s_name}}</a></li>
+    {% endfor %}
+</body>
+</html>
+
+{% endblock %}

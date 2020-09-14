@@ -40,17 +40,26 @@ class Teacher(models.Model):
         return self.t_name
 
 class Attendance(models.Model):
-    percentage = models.PositiveIntegerField(validators = [MinValueValidator(0) ,  MaxValueValidator(100)])
-    count = models.PositiveIntegerField(validators = [MinValueValidator(0)])
-    attended_classes = models.IntegerField(validators = [MinValueValidator(0) ])
-    total_classes = models.IntegerField(validators=[MinValueValidator(0)])
-    student = models.ForeignKey('Student' , on_delete = models.CASCADE)
+    student = models.OneToOneField(
+        Student ,
+        on_delete=models.CASCADE ,
+        primary_key=True
+    )
+    #percentage = models.PositiveIntegerField(validators = [MinValueValidator(0) ,  MaxValueValidator(100)])
+    #count = models.PositiveIntegerField(validators = [MinValueValidator(0)])
+    attended_classes = models.IntegerField( default=0,validators = [MinValueValidator(0) ])
+    total_classes = models.IntegerField(default=0, validators=[MinValueValidator(0)])   
 
     def __str__(self):
         return "{} - {} %".format(self.student , self.attended_classes/self.total_classes*100)
 
 class Marks(models.Model):
-    student = models.ForeignKey('Student' , on_delete=models.CASCADE)   
+
+    student = models.OneToOneField(
+        Student ,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )   
     marks_scored = models.IntegerField(validators = [MinValueValidator(0)])
     total_marks = models.IntegerField(validators = [MinValueValidator(0)])
     subject = models.ForeignKey('Subject' , on_delete=models.CASCADE)

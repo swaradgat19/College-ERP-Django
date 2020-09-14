@@ -1,3 +1,5 @@
+
+    </form>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+
     
     <h1>Student : {{ student.s_name }}</h1>
     <h5>Update Attendance of {{student.s_name}} </h5>
@@ -15,8 +18,8 @@
 
         {{ form }}
 
+        <h1>Attendance Percentage :  {% widthratio attendance.attended_classes attendance.total_classes 100 %} %</h1>
         <button type="submit">Submit</button>  
-    </form>
-
+        
 </body>
 </html>

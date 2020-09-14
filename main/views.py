@@ -1,7 +1,9 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse , HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView,LogoutView
 from main import models
-from main import forms
+#from main import forms
 from django.views.generic import (
     ListView,
     DetailView,
@@ -74,7 +76,6 @@ def index(request):
     query_pk_and_slug
     context_object_name = 'students'
     template_name = 'main/division_students.html'
-
 '''
 
 class DivisionList(ListView):
@@ -102,7 +103,7 @@ class create_branch(CreateView):
     template_name = 'main/create_branch.html'
     fields = '__all__'
     success_url = '/'
-
+'''
 def UpdateAttendance(request , pk):
 
     student = get_object_or_404(models.Student , pk =pk)
@@ -121,5 +122,47 @@ def UpdateAttendance(request , pk):
         'student' : student,
         'attendance' : attendance
     }
+    '''
 
-    return render(request , 'main/update_attendance.html' , context)
+    #return render(request , 'main/update_attendance.html' , context)
+
+'''class Login(LoginView):
+    template_name = "main/login.html"
+    redirect_authenticated_user = True
+
+class Logout(LogoutView):
+    pass
+'''
+
+class UpdateAttendance(UpdateView):
+    model = models.Attendance
+    template_name = 'main/update_attendance.html'
+    fields = '__all__'
+    success_url = '/'
+
+
+def Attendance_list(request , pk):
+
+    student  = get_object_or_404(models.Student , pk = pk)
+    attendance = models.Attendance.objects.filter(student=pk)
+
+    context = {
+        'attendance' : attendance,
+        'student' : student
+    }
+
+
+    return render(request , 'main/attendance_list.html' , context)
+
+class create_subject(CreateView):
+    model = models.Subject
+    template_name = 'main/create_subject.html'
+    success_url = '/'
+    fields = '__all__'
+
+class whos_attendance(ListView):
+
+    model = models.Student
+    context_object_name = 'student'
+    template_name = 'main/whos_attendance.html' 
+
