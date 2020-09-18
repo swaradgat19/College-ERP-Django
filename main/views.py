@@ -174,5 +174,19 @@ def whose_attendance(request):
 
     return render(request , 'main/whos_attendance.html' , context)
 
+class UpdateMarks(UpdateView):
+    model = models.Marks
+    fields = '__all__'
+    template_name = 'main/update_marks.html'
+    success_url = '/'
 
+def whos_marks(request):
+    student = models.Student.objects.all()
+    marks = models.Marks.objects.all()
 
+    context = {
+        'student' : student,
+        'marks' : marks
+    }
+
+    return render(request , 'main/whos_marks.html' , context)

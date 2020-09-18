@@ -3,33 +3,107 @@
 {% block content %}
 
 {% include 'main/navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .login-box{
+      width: 900px;
+      height: 200px;
+      position: absolute;
+      top: 30%;
+      left: 70%;
+      transform: translate(-50%,-50%);
+      color:rgb(255, 253, 253);
+      
+  }
+  .second{
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+  }
+  .second h2{
+            float: left;
+            font-size: 20px;
+            border-bottom: 4px solid rgb(0, 255, 21);
+            margin-bottom: 50px;
+            padding: 13px 0;
+  }
 
-<style>
-    a {
-        color: black;
-        text-decoration: underline;
-    }
-</style>
-    <h1>Update attendance of :</h1>
-    <h4 class="center">
-        <table>
-            <thead>
-              <tr>
-                  <th>Students:</th>
-              </tr>
-            </thead>
+  .login-box h1{
+      float: left;
+      font-size: 35px;
+      border-bottom: 6px solid rgb(0, 255, 21);
+      margin-bottom: 50px;
+      padding: 13px 0;
+  }
+      body {
+          margin: 0;
+          padding: 0;
+          background-color: rgb(0, 0, 0);
+          background-image: url("https://images.unsplash.com/photo-1559559580-4814f977d18e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+          background-size: cover;
+      }
+      .container{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%) translateY(-50%);
+      }
+      li{
+          display: block;
+      }
+      li a{
+          text-decoration: none;
+          display: block;
+          color: rgb(255, 255, 255);
+          font-family: sans-serif;
+          font-weight: lighter;
+          font-size: 30px;
+          padding: 0 20px;
+      }
+      .cool::after{
+          content: '';
+          display: block;
+          width: 0;
+          height: 5px;
+          background: rgb(0, 255, 21);
+          transition: width .3s;
+          opacity: 0.8;
+          
+      }
+      a:hover{
+          color: rgb(0, 255, 21);
+      }
+      .cool:hover::after{
+          width: 100%;
+          transition: width .3s;
+         
+      }
+
+
+
     
-            <tbody class="center">
-                {% for s in student %}
-              <tr>
-                <td>
-                        <li><a href="{% url 'update_attendance' s.id %}">{{s.s_name}}</a></li>
-                </td>
-                    {% endfor %}              
-              </tr>
-            </tbody>
-          </table>
+  </style>
+</head>
+<div class="login-box">
+<h1>Update attendance of :</h1>
+</div>
+<div class="second">
+  <h2>Students</h2>
+</div>
 
+<body>
+    <div class="container">
+                {% for s in student %}
+                        <li><a href="{% url 'update_attendance' s.id %}">{{s.s_name}}</a></li>
+                    {% endfor %}              
+            
 </body>
 </html>
 

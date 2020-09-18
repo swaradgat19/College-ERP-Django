@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+{% include 'main/navbar.html' %}
+
+
+    <h1>Update Marks of :</h1>
+    <h4 class="center">
+        <table>
+            <thead>
+              <tr>
+                  <th>Students:</th>
+              </tr>
+            </thead>
+    
+            <tbody class="center">
+                {% for s in student %}
+              <tr>
+                <td>
+                        <li><a href="{% url 'update_marks' s.id %}">{{s.s_name}}</a></li>
+                </td>
+                    {% endfor %}              
+              </tr>
+            </tbody>
+          </table>
+
+</body>
+</html>
+
+{% endblock %}

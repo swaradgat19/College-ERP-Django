@@ -19,6 +19,9 @@ urlpatterns = [
     path('create_branch' , views.create_branch.as_view() , name = 'create_branch'),
     path('create_subject' , views.create_subject.as_view() , name = 'create_subject'),
 
+    path('update_marks/<int:pk>' , views.UpdateMarks.as_view() , name = 'update_marks'),
+    path('whos_marks' , views.whos_marks , name = 'whos_marks'),
+
 
     path('division_students/<int:pk>' , views.DivisionStudents , name = 'div_kids'),     
     path('' , views.index , name = 'home')

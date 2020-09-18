@@ -56,6 +56,9 @@ class Attendance(models.Model):
 
 class Marks(models.Model):
 
+    def something():
+        return 'a string'
+
     student = models.OneToOneField(
         Student ,
         on_delete=models.CASCADE,
@@ -63,7 +66,8 @@ class Marks(models.Model):
     )   
     marks_scored = models.IntegerField(validators = [MinValueValidator(0)])
     total_marks = models.IntegerField(validators = [MinValueValidator(0)])
-    subject = models.ForeignKey('Subject' , on_delete=models.CASCADE)
+    student_performance = models.CharField(default = something , max_length=100)
+
 
     def __str__(self):
         return "{} - {}".format(self.student ,self.subject , self.marks_scored)

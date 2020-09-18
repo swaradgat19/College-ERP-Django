@@ -16,13 +16,20 @@
            background-image: url("https://images.unsplash.com/photo-1559559580-4814f977d18e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
         }
         .login-box{
-            width: 500px;
+            width: 600px;
             height: 200px;
             position: absolute;
-            top: 50%;
+            top:40%;
             left: 50%;
             transform: translate(-50%,-50%);
             color:rgb(255, 253, 253);
+        }
+        .login-box h2{
+            float: left;
+            font-size: 20px;
+            border-bottom: 4px solid rgb(0, 255, 21);
+            margin-bottom: 50px;
+            padding: 13px 0;
         }
         .login-box h1{
             float: left;
@@ -37,7 +44,7 @@
             font-size: 20px;
             padding: 8px 0;
             margin: 8px 0;
-            border-bottom: 2px solid green;
+           
         }
         button{
             border: 0;
@@ -64,24 +71,27 @@
                 color: rgb(0, 0, 0);
         
             }
+            
         
         
             </style>
 </head>
 
+
 <body>
     <div class="login-box">
-    <h1>Add a Teacher:</h1>
-    <div class="textbox">
-    <form action="" method="POST">
-        {% csrf_token %}
+        <h1>Update Marks of: {{student.s_name}} </h1>
+        <div class="textbox">
+        <form action="" method = 'POST'>
 
-        {{ form.as_p }}
+            {% csrf_token %}
 
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
-    </form>
-</div>
+            {{ form.as_p }}
+
+            <button type="submit">Submit</button>
+            <button type = 'reset'>Reset</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>
