@@ -29,13 +29,13 @@ def Student(request,pk):
 
     return render(request , 'main/student.html' , context)
 
-class StudentCreate(CreateView):
+class StudentCreate(LoginRequiredMixin, CreateView):
     model = models.Student
     template_name = 'main/create_student.html'
     fields = '__all__'
     success_url = '/students'
 
-class StudentUpdate(UpdateView):
+class StudentUpdate(LoginRequiredMixin , UpdateView):
     model = models.Student
     template_name = 'main/create_student.html'
     fields = '__all__'
@@ -54,6 +54,7 @@ class TeacherList(ListView):
 
 class TeacherUpdate(UpdateView):
     model = models.Teacher
+    fields = '__all__'
     template_name = 'main/create_teacher.html'
     success_url = '/teachers'
 

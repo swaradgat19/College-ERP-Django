@@ -33,8 +33,9 @@ class Student(models.Model):
 
 class Teacher(models.Model):
     t_name = models.CharField(max_length=100)
-    subject = models.ManyToManyField('Subject')
+    subject = models.ForeignKey('Subject' , on_delete=models.CASCADE , default=None)
     classroom = models.ForeignKey('Class' , on_delete=models.CASCADE ,default=None)
+    branch = models.OneToOneField(Branch , on_delete=models.CASCADE , default=None)
 
     def __str__(self):
         return self.t_name
