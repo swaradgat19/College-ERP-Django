@@ -1,18 +1,129 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-{% include 'main/navbar.html' %}
-<style>
-  h2 {
-    text-decoration: underline;
-  }
-</style>
 
-<h2>Student Information:</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ultimate Frisbee - Teams</title>
+  <style>
+
+.hello-msg{
+              font-size: 18px;
+              color: rgb(255, 253, 253);
+              margin-right: 100px;
+
+            }
+
+            .hello-msg a {
+                color: white;
+                font-size: 18px;
+                margin-right: 20px;
+            }
+    
+body{
+  background-image: url("https://images.unsplash.com/photo-1559559580-4814f977d18e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");;
+
+}
+.right {
+
+  position: absolute;
+  top: 50%;
+  left: 7%;
+}
+.left{
+  width: 900px;
+      height: 200px;
+      position: absolute;
+      top: 40%;
+      left: 73%;
+      transform: translate(-50%,-50%);
+      color:rgb(255, 253, 253);
+      
+}
+.left h2{
+  float: left;
+            font-size: 25px;
+            border-bottom: 4px solid rgb(0, 255, 21);
+            margin-bottom: 50px;
+            padding: 13px 0;
+}
+
+table.center{
+	margin-left: auto;
+	margin-right: ;
+}
+table {
+	top: 40%;
+  width: 70%;
+  left: 50%;
+  margin:0 auto;
+  font-family: "Times New Roman", Times, serif;
+
+font-weight: bold;
+  font-size: 100%;
+}
+th {
+	color:rgb(0,255,21); 
+text-align: center;
+	border-collapse: collapse;
+	font-size: 25px;
+	height: 29px;
+  width : 500px;
+}
+tr th:first-child {
+	border-radius: 20px 0px 0px 0px;
+
+}
+tr th:last-child{
+	border-radius: 0px 20px 0px 0px;
+}
+td {
+	
+	color: white; 
+  font-size: 20px;
+  padding:20px;
+	text-align: center;
+}
 
 
-<div>
-    <h1 class="center">
+tr th:first-child, tr td:first-child {
+	text-align: center;
+}
+
+
+tr td {
+	opacity: 0.8;
+
+}
+
+
+tr td:hover {
+	opacity: 3.0;
+	
+
+}
+
+  </style>
+</head>
+
+
+
+<body>
+
+  <span class = 'hello-msg'>
+    <a href="{% url 'create_teacher' %}">Create Teacher</a>
+    <a href="{% url 'create_student' %}">Create Student</a>
+    <a href="{% url 'create_div' %}">Create Class</a>
+    <a href="{% url 'create_branch' %}">Create Branch</a>
+    
+    <a href="{% url 'create_subject' %}">Create Subject</a></span>
+
+  <div class="left">
+    <h2>Student Information:</h2>
+  </div>
+<section class="right">
         <table>
             <thead>
               <tr>
@@ -30,9 +141,10 @@
                 <td>{{Students.classroom}}</td>
                 <td>{{Students.classroom.branch}}</td>
               </tr>
-            </tbody>
+           
+ </tbody>
           </table>
-    </h5>
-  </div>
+ </section>
+</body>
 
 {% endblock %}

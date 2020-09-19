@@ -4,6 +4,20 @@
         <h1>Welcome to College Database Management System!</h1>
         </div>
         <style>
+            .hello-msg{
+              font-size: 18px;
+              color: rgb(255, 253, 253);
+              margin-right: 100px;
+
+            }
+
+            .hello-msg a {
+                color: white;
+                font-size: 18px;
+                margin-right: 20px;
+            }
+            </style>
+        <style>
             .login-box{
             width: 900px;
             height: 200px;
@@ -76,5 +90,17 @@
  <li>  <a href="{% url 'whos_attendance' %}" class="cool">Update attendance</a></li> 
  <li><a href="{% url 'whos_marks' %}" class="cool">Update Marks</a></li>
     </div>
+</div>
+<span class="hello-msg">Hello, {{request.user}}</span>
+
+
+<span class = 'hello-msg'><a  href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'create_teacher' %}">Create Teacher</a>
+    <a href="{% url 'create_student' %}">Create Student</a>
+    <a href="{% url 'create_div' %}">Create Class</a>
+    <a href="{% url 'create_branch' %}">Create Branch</a>
+    
+    <a href="{% url 'create_subject' %}">Create Subject</a></span>
+</nav>
     </body>
 {% endblock %}

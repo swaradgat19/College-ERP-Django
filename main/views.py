@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse , HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -11,7 +11,49 @@ from django.views.generic import (
     UpdateView,
     CreateView
 )
+from .forms import CreateUserForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from .decorators import unauthenticated_user,allowed_users
 # Create your views here.
+@unauthenticated_user
+def registerPage(request):
+    form = UserCreationForm()
+
+    if request.method == 'POST' :
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for ' + user )
+
+            return redirect('login')
+    
+    context = {'form':form}
+    return render(request, 'main/register.html', context)
+@unauthenticated_user    
+def loginPage(request):
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.info(request, 'Username OR Password in incorrect')
+        
+
+    context = {}
+    return render(request, 'main/login.html', context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
 
 class StudentList(ListView):
     model = models.Student
@@ -66,7 +108,6 @@ def TeacherInfo(request , pk):
 
     return render(request , 'main/teacher.html' , context)
     
-@login_required(login_url='/auth/login')
 def index(request):
     
     context = {}

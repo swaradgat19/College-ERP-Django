@@ -56,8 +56,6 @@ class Attendance(models.Model):
 
 class Marks(models.Model):
 
-    def something():
-        return 'a string'
 
     student = models.OneToOneField(
         Student ,
@@ -66,7 +64,6 @@ class Marks(models.Model):
     )   
     marks_scored = models.IntegerField(validators = [MinValueValidator(0)])
     total_marks = models.IntegerField(validators = [MinValueValidator(0)])
-    student_performance = models.CharField(default = something , max_length=100)
 
 
     def __str__(self):
